@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue.js</title>
+    <style>
+        /* 1. Estilo para el mensaje de reinicio */
+        .reinicio-msg {
+            color: rgb(255, 0, 212); /* Color rosa para el mensaje de reinicio */
+            margin-top: 10px;
+        }
+        
+        /* 2. Estilo para los botones */
+        button {
+            background-color: #dd4cfad0; /* Color de fondo para los botones */
+            color: rgb(0, 0, 0); /* Color del texto de los botones */
+            border: none;
+            padding: 7px 10px;
+            margin: 5px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            font-family: 'Arial', sans-serif; /* Fuente de los botones */
+        }
+        button:hover {
+            background-color: #77e7a9; /* Color de fondo al pasar el cursor */
+        }
+        
+        /* 3. Estilo para el ícono SVG */
+        .icon {
+            width: 24px; /* Tamaño del ícono */
+            height: 24px; /* Tamaño del ícono */
+            vertical-align: middle; /* Alineación vertical */
+            margin-right: 8px; /* Espacio entre el ícono y el texto */
+        }
+        
+        /* 4. Estilo para el encabezado <h1> */
+        h1 {
+            display: flex; /* Usar flexbox para alinear ícono y texto */
+            align-items: center; /* Alinear verticalmente el ícono y el texto */
+            margin: 0; /* Quitar margen por defecto */
+        }
+    </style>
+</head>
+<body>
+    <div id="app">  
+        <!-- 5. Encabezado con ícono SVG -->
+        <h1>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="icon" viewBox="0 0 16 16">
+              <path d="M6.375 7.125V4.658h1.78c.973 0 1.542.457 1.542 1.237 0 .802-.604 1.23-1.764 1.23zm0 3.762h1.898c1.184 0 1.81-.48 1.81-1.377 0-.885-.65-1.348-1.886-1.348H6.375z"/>
+              <path d="M4.002 0a4 4 0 0 0-4 4v8a4 4 0 0 0 4 4h8a4 4 0 0 0 4-4V4a4 4 0 0 0-4-4zm1.06 12V3.545h3.399c1.587 0 2.543.809 2.543 2.11 0 .884-.65 1.675-1.483 1.816v.1c1.143.117 1.904.931 1.904 2.033 0 1.488-1.084 2.396-2.888 2.396z"/>
+            </svg>
+            Lista de frases
+        </h1>
+
+        <!-- 6. Contador de frases -->
+        <h2>Contador de frases: {{ frases.length }}</h2>
+        <hr>
+
+        <!-- 7. Campos de entrada y botones -->
+        <input v-model="nuevaFrase.frase" type="text" placeholder="Añadir frase">
+        <input v-model="nuevaFrase.autor" type="text" placeholder="Añadir autor">
+        <p>
+            <button @click="agregarFrase">Añadir frase</button>
+            <button @click="reiniciarFrases">Reiniciar</button>
+        </p>
+
+        <!-- 8. Mensaje de reinicio -->
+        <label v-if="mensajeReinicioVisible" class="reinicio-msg">Las frases han sido reiniciadas</label>
+
+        <!-- 9. Lista numerada de frases -->
+        <ol>
+            <li v-for="(frase, index) in frases" :key="index">
+                <span>"{{ frase.frase }}"</span> - <strong>{{ frase.autor }}</strong>
+            </li>
+        </ol>
+    </div>
+
+    <!-- 10. Inclusión de Vue.js y archivo de script -->
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="./app.js"></script>
+</body>
+</html>
